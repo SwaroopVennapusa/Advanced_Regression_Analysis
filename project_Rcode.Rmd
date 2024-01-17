@@ -1,0 +1,55 @@
+---
+title: "Project"
+author: "Derek Wu(Ke-Shao Wu)"
+date: "2023-11-20"
+output: pdf_document
+---
+
+
+```{R}
+library(readxl)
+library(car)
+setwd("/home/swaroop/Downloads/Assignments/STP530/project/")
+pr=read_xlsx("clean_data.xlsx")
+pr=pr[pr$`Fuel Economy(MPG)`<=200,]
+pr$`Vehicle Manufacturer Name`=as.factor(pr$`Vehicle Manufacturer Name`)
+hist(pr$`Fuel Economy(MPG)`)
+hist(pr$`Rated Horsepower`)
+hist(pr$`Equivalent Test Weight (lbs.)`)
+pairs(pr[,1:4])
+
+#(1)
+mod=lm(pr$`Fuel Economy(MPG)`~(pr$`Vehicle Manufacturer Name`))
+summary(mod)
+residualPlots(mod, type="rstudent")
+qqnorm(residuals(mod))
+plot(fitted(mod),residuals(mod))
+plot(pr$`Vehicle Manufacturer Name`,residuals(mod))
+hist(residuals(mod))
+
+#(2)
+mod2=lm(pr$`Fuel Economy(MPG)`~pr$`Rated Horsepower`)
+summary(mod2)
+residualPlots(mod2, type="rstudent")
+qqnorm(residuals(mod2))
+plot(fitted(mod2),residuals(mod2))
+plot(pr$`Rated Horsepower`,residuals(mod2))
+hist(residuals(mod2))
+
+#(3)
+mod3=lm(pr$`Fuel Economy(MPG)`~pr$`Equivalent Test Weight (lbs.)`)
+summary(mod3)
+residualPlots(mod3, type="rstudent")
+qqnorm(residuals(mod3))
+plot(fitted(mod3),residuals(mod3))
+plot(pr$`Equivalent Test Weight (lbs.)`,residuals(mod3))
+hist(residuals(mod3))
+
+#Transfer Fuel Economy into log to fit Rated Horse Power again
+pr$log.fuel=log(pr$`Fuel Economy(MPG)`)
+logmod2=lm(pr$log.fuel~pr$`Rated Horsepower`)
+residualPlots(logmod2,type="rstudent")
+plot(fitted(logmod2),residuals(logmod2))
+qqnorm(residuals(logmod2))
+
+```
