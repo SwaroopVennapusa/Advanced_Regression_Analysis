@@ -1,0 +1,55 @@
+In a regression analysis of on-the-job head injuries of warehouse laborers caused by falling
+objects, Y is a measure of severity of the injury, X1 is an index refiecting both the weight of
+the object and the distance it fell, and X2 and X3 are indicator variables for nature of head
+protection worn at the time of the accident, coded as follows:
+Type of Protection         X2        X3
+Hard hat 		    1 	       0
+Bump cap		    0	       1
+None			    0		0
+
+The response function to be used in the study is E{Y}
+= beta_0 + beta_1*X1 + beta_2*X2 + beta_3*X3
+a. Develop the response function for each type of protection category.
+b. For each of the following questions, specify the alternatives Ho and Ha for the appropriate
+test: (I) With X1 fixed, does wearing a bump cap reduce the expected severity of injury as
+compared with wearing no protection? (2) With X1 fixed, is the expected severity of injury
+the same when wearing a hard hat as when wearing a bump cap?
+
+
+Answer:
+
+### Part a: Develop the response function for each type of protection category.
+
+1. **Hard Hat**:
+   - When a hard hat is worn, X2 = 1, and X3 = 0. The response function (i.e., the expected value of Y) is:
+     - E(Y) = beta_0 + beta_1*X1 + beta_2*1 + beta_3*0
+     - E(Y) = beta_0 + beta_1*X1 + beta_2
+
+2. **Bump Cap**:
+   - When a bump cap is worn, X2 = 0, and X3 = 1. The response function is:
+     - E(Y) = beta_0 + beta_1*X1 + beta_2*0 + beta_3*1
+     - E(Y) = beta_0 + beta_1*X1 + beta_3
+
+3. **None** (No protection):
+   - When no protection is worn, both X2 and X3 are 0. The response function is:
+     - E(Y) = beta_0 + beta_1*X1 + beta_2*0 + beta_3*0
+     - E(Y) = beta_0 + beta_1*X1
+
+### Part b: Specify the null and alternative hypotheses.
+
+#### Question 1:
+"With X1 fixed, does wearing a bump cap reduce the expected severity of injury as compared with wearing no protection?"
+
+For this question, we are comparing the "Bump cap" category (E(Y) = beta_0 + beta_1*X1 + beta_3) to the "None" category (E(Y) = beta_0 + beta_1*X1). Specifically, we are interested in whether beta_3 is negative, indicating a reduction in the expected severity.
+
+- Ho (Null Hypothesis): beta_3 = 0 (Wearing a bump cap does not change the expected severity of injury compared with no protection.)
+- Ha (Alternative Hypothesis): beta_3 < 0 (Wearing a bump cap reduces the expected severity of injury compared with no protection.)
+
+#### Question 2:
+"With X1 fixed, is the expected severity of injury the same when wearing a hard hat as when wearing a bump cap?"
+
+Here, we are comparing the "Hard hat" category (E(Y) = beta_0 + beta_1*X1 + beta_2) to the "Bump cap" category (E(Y) = beta_0 + beta_1*X1 + beta_3). We want to know if the difference, represented by (beta_2 - beta_3), is zero.
+
+- Ho (Null Hypothesis): beta_2 = beta_3 (The expected severity of injury is the same for both a hard hat and a bump cap.)
+- Ha (Alternative Hypothesis): beta_2 ≠ beta_3 (The expected severity of injury is not the same for a hard hat and a bump cap.)
+
